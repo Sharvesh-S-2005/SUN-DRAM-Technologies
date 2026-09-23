@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import { ContactHeader } from "@/components/sections/contact/ContactHeader";
+import { ContactChannels } from "@/components/sections/contact/ContactChannels";
+import { ContactForm } from "@/components/sections/contact/ContactForm";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -7,8 +12,20 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="flex min-h-[60vh] items-center justify-center px-6 py-24 text-center text-zinc-500">
-      <p>Contact — content pending Phase 4.</p>
-    </div>
+    <>
+      <ContactHeader />
+      <Section className="pt-0 pb-32">
+        <Container size="lg">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+            <div className="order-2 lg:order-1">
+              <ContactChannels />
+            </div>
+            <div className="order-1 lg:order-2">
+              <ContactForm />
+            </div>
+          </div>
+        </Container>
+      </Section>
+    </>
   );
 }
