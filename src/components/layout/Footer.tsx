@@ -38,7 +38,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-10 max-w-7xl border-t border-white/10 pt-6 text-xs text-zinc-600">
+      <div className="mx-auto mt-10 max-w-7xl border-t border-white/10 pt-6 text-xs text-zinc-500">
         © 2026 SUN-DRAM Technologies. All rights reserved.
       </div>
     </footer>
