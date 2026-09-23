@@ -32,9 +32,6 @@ export function AboutCredentials() {
               <Card variant="strong" className="h-full">
                 <h3 className="text-2xl font-semibold tracking-[-0.02em] text-white">{credential.title}</h3>
                 <p className="mt-4 text-base leading-7 text-zinc-300">{credential.body}</p>
-                <p className="mt-5 border-t border-white/10 pt-4 text-xs uppercase tracking-[0.2em] text-zinc-500">
-                  TODO: registration / programme number — add once supplied by the owner.
-                </p>
               </Card>
             </FadeIn>
           ))}
