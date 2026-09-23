@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Background } from "@/components/layout/Background";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +16,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SUN-DRAM Technologies",
-  description: "A cinematic launch experience for Infrastructure Intelligence.",
+  metadataBase: new URL("https://company.sundram.tech"),
+  title: {
+    default: "SUN-DRAM Technologies — Building Software That Helps Businesses Run Better",
+    template: "%s — SUN-DRAM Technologies",
+  },
+  description:
+    "We build centralised ERP, inventory, payroll, LMS, and AI systems for businesses. MSME registered and government accelerated.",
+  openGraph: {
+    siteName: "SUN-DRAM Technologies",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
@@ -27,7 +42,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-black text-white">{children}</body>
+      <body className="flex min-h-full flex-col bg-black text-white">
+        <Background />
+        <Navbar />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
