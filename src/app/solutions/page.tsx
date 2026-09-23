@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { SolutionsHeader } from "@/components/sections/solutions/SolutionsHeader";
+import { SolutionsList } from "@/components/sections/solutions/SolutionsList";
+import { ClosingCta } from "@/components/sections/shared/ClosingCta";
 
 export const metadata: Metadata = {
   title: "Solutions",
@@ -8,8 +11,15 @@ export const metadata: Metadata = {
 
 export default function SolutionsPage() {
   return (
-    <div className="flex min-h-[60vh] items-center justify-center px-6 py-24 text-center text-zinc-500">
-      <p>Solutions — content pending Phase 3.</p>
-    </div>
+    <>
+      <SolutionsHeader />
+      <SolutionsList />
+      <ClosingCta
+        heading="Not sure which of these you need?"
+        body="Most organisations begin with a single module and expand as the benefit becomes clear. Describe your current operations and we will recommend a practical starting point."
+        ctaLabel="Contact Us"
+        ctaHref="/contact"
+      />
+    </>
   );
 }

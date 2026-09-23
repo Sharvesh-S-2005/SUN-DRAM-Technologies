@@ -1,4 +1,11 @@
 import type { Metadata } from "next";
+import { AboutHeader } from "@/components/sections/about/AboutHeader";
+import { AboutCredentials } from "@/components/sections/about/AboutCredentials";
+import { WhoWeAre } from "@/components/sections/about/WhoWeAre";
+import { Beliefs } from "@/components/sections/about/Beliefs";
+import { HowWeWork } from "@/components/sections/about/HowWeWork";
+import { FounderNote } from "@/components/sections/about/FounderNote";
+import { ClosingCta } from "@/components/sections/shared/ClosingCta";
 
 export const metadata: Metadata = {
   title: "About",
@@ -8,8 +15,14 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="flex min-h-[60vh] items-center justify-center px-6 py-24 text-center text-zinc-500">
-      <p>About — content pending Phase 3.</p>
-    </div>
+    <>
+      <AboutHeader />
+      <AboutCredentials />
+      <WhoWeAre />
+      <Beliefs />
+      <HowWeWork />
+      <FounderNote />
+      <ClosingCta heading="Let's look at your operations together." ctaLabel="Get in Touch" ctaHref="/contact" />
+    </>
   );
 }
