@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SUN-DRAM Technologies — website
 
-## Getting Started
+Next.js 16 (App Router) + TypeScript + Tailwind CSS v4 site for SUN-DRAM Technologies. See `docs/redesign.md` for
+the full redesign brief and `AUDIT.md` for the extracted design token contract.
 
-First, run the development server:
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy `.env.example` to `.env.local` and fill in real values (never commit `.env.local`):
 
-## Learn More
+| Variable | Required for | Notes |
+|---|---|---|
+| `SUPABASE_URL` | Contact form + `/admin/leads` | Project URL from the Supabase dashboard. |
+| `SUPABASE_SERVICE_ROLE_KEY` | Contact form + `/admin/leads` | Service role key — server-only, never expose to the client. |
+| `ADMIN_PASSWORD` | `/admin/leads` | Single shared secret gating the leads dashboard. |
+| `DATABASE_URL` | — | Reserved if a direct Postgres connection is ever needed; unused by the current code path (Supabase's JS client is used instead). |
+| `RESEND_API_KEY` | Email notifications (not implemented) | Only needed if the optional notification email (Section 6.6 of the brief) is built. |
+| `NOTIFICATION_EMAIL` | Email notifications (not implemented) | Defaults to `founder@sundram.tech`. |
 
-To learn more about Next.js, take a look at the following resources:
+### Database setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Run `supabase/schema.sql` once against the project's Supabase Postgres instance (SQL Editor in the dashboard, or
+`supabase db push`) to create the `enquiries` table before testing the contact form or `/admin/leads`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Routes
 
-## Deploy on Vercel
+| Route | Purpose |
+|---|---|
+| `/` | Home |
+| `/solutions` | The seven solutions, sourced from `src/content/solutions.ts` |
+| `/about` | Credentials, principles, how we work |
+| `/contact` | Enquiry form → `POST /api/contact` |
+| `/admin/leads` | Password-gated enquiry review (unlisted, `noindex`) |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run dev     # start the dev server
+npm run build   # production build
+npm run start   # run the production build
+npm run lint    # eslint
+```
